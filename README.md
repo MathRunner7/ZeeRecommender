@@ -22,16 +22,24 @@ Movies to the particular users are recommended after calculating predicted ratin
 
 Ratings are predicted with the formula
 
-$$ \hat{r}_{ui} = \frac{\sum_{j{\in}u}sim(i,j){\cdot}r_{ui}}{\sum_{j{\in}u}|sim(i,j)|} $$
+$$
+\hat{r}_{ui} = \frac{\sum_{j{\in}u}sim(i,j){\cdot}r_{ui}}{\sum_{j{\in}u}|sim(i,j)|}
+$$
 
-Where: $N_u$: Items rated by user $u$  
-$sim(i,j)$: Similarity between items $i$ and $j$  
+Where: $N_u$: Items rated by user $u$
+$sim(i,j)$: Similarity between items $i$ and $j$
 $r_{uj}$: Rating by user $u$ for item $j$
 
 # Steps to get prediction
 
 1. Set environment to python 3.13
-2. run the flask app with command `flask --app main run`
+2. run the flask app with command `flask --app main run` from terminal
 3. Send a POST request in json format from any request sending platform like POSTMAN
 4. Example of sending data in json format `{"user":1, n_recommend:10}`
 5. URL for Pearson based recommender is http://localhost:5000/pearson and for Cosine recommender is http://localhost:5000/cosine
+
+# Running docker container
+
+To run the code with docker container use following codes in terminal
+`docker build -t zee_recommender .`
+`docker run -p <desired_port_number>:5000 -d zee_recommender`
