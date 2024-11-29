@@ -26,8 +26,8 @@ $$
 \hat{r}_{ui} = \frac{\sum_{j{\in}u}sim(i,j){\cdot}r_{ui}}{\sum_{j{\in}u}|sim(i,j)|}
 $$
 
-Where: $N_u$: Items rated by user $u$
-$sim(i,j)$: Similarity between items $i$ and $j$
+Where: $N_u$: Items rated by user $u$  
+$sim(i,j)$: Similarity between items $i$ and $j$  
 $r_{uj}$: Rating by user $u$ for item $j$
 
 # Steps to get prediction
