@@ -30,7 +30,7 @@ $sim(i,j)$: Similarity between items $i$ and $j$
 
 $r_{uj}$: Rating by user $u$ for item $j$
 
-# Steps to get prediction
+# Steps to get recommendations
 
 1. Set environment to python 3.13
 2. run the flask app with command `flask --app main run` from terminal
