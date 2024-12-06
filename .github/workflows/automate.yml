@@ -66,6 +66,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: loan_app_service
+          service: zee_recommender_service
           cluster: zee_recommendation_system
           wait-for-service-stability: true
