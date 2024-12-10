@@ -42,7 +42,7 @@ app = Flask(__name__)
 # Welcome point
 @app.route('/')
 def home():
-    return '<h1>Zee Recommender System</h1>'
+    return 'Zee Recommender System by Ankit Thummar'
 
 # Pearson recommendation
 @app.route('/pearson', methods=['GET', 'POST'])
@@ -148,4 +148,3 @@ def cosine():
 @app.route('/cmf')
 def cmf():
     return 'CMF Prediction'
-

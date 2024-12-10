@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: us-east-1 # As per AWS Account console region
 
 jobs:
   verify:
@@ -12,10 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python
-        # This is the version of the action for setting up Python, not the Python version.
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v5 # Setup actions version
         with:
-          python-version: 3.13
+          python-version: 3.13  # Setup Python version
 
       - name: Install dependencies
         run: |
@@ -47,7 +46,7 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: zee_recommender
+          ECR_REPOSITORY: zee_recommender_repo
           IMAGE_TAG: ${{ github.sha }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
@@ -58,14 +57,14 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: zee_recsys_task_definitions.json
-          container-name: zee_recsys_container
+          task-definition: zee_recommendation_task_definition-revision1.json
+          container-name: recommendation_container
           image: ${{ steps.build-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: zee_recommender_service
-          cluster: zee_recommendation_system
+          service: zee_recommender_auto_deployment_service
+          cluster: zee_recommendation_cluster1
           wait-for-service-stability: true
